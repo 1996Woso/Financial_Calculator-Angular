@@ -1,4 +1,5 @@
 <form (ngSubmit)="onSubmit()">
+    <h3><u>Simple Interest:</u></h3>
     <p>
         <label for="principal">Principal Amount (P)</label>
         <input id="principal" name="principal-amount" type="number" [(ngModel)]="userPrincipal" />
@@ -22,9 +23,9 @@
     <p><b>Buttons:</b></p>
     <div class="buttons" >
         <button (click)="calculatePrincipal()">P</button>
-        <button>i</button>
-        <button>n</button>
-        <button>A</button>
-        <button>I</button>
+        <button (click)="calculateRate()">i</button>
+        <button (click)="calculatePeriod()">n</button>
+        <button (click)="calculateAmaount()">A</button>
+        <button (click)="calculateInterest()">I</button>
     </div>
 </form>
