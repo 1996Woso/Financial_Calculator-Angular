@@ -1,3 +1,4 @@
+import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FinancialService } from '../../financial.service';
@@ -5,18 +6,21 @@ import { FinancialService } from '../../financial.service';
 @Component({
   selector: 'app-user-input',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,NgIf],
   templateUrl: './user-input.component.html',
   styleUrl: './user-input.component.css'
 })
 export class UserInputComponent {
+  selectedInterestType ='simple';
+
+  //Simple Interest variables
   userPrincipal = '';
   userAmount = '';
   userRate = '';
   userInterest = '';
   userPeriod = ''
   constructor(private financialService:FinancialService){}
-  onSubmit(){
+  onSubmitSimpleInterest(){
     this.financialService.calculateFinancialResults({
       principalAmount: +this.userPrincipal,
       accumulatedAmount: +this.userAmount,
@@ -36,7 +40,7 @@ export class UserInputComponent {
         accumulatedAmount / (1 + (interestRate / 100) * period)
       ).toFixed(2);
     }
-    else if(interestRate&&interestRate&&period){
+    else if(interestEarned&&interestRate&&period){
       this.userPrincipal = (100*(interestEarned/(interestRate*period))).toFixed(2);
     }
     else if(accumulatedAmount && interestEarned){
@@ -70,7 +74,7 @@ export class UserInputComponent {
       this.userPeriod = (((accumulatedAmount/principal)-1)/(interestRate/100)).toFixed(2);
     }
     else if(interestEarned&&principal&&interestRate){
-      this.userRate = (100*(interestEarned/(principal*interestRate))).toFixed(2);
+      this.userPeriod = (100*(interestEarned/(principal*interestRate))).toFixed(2);
     }else{
       alert('Please fill in required fields correctly.');
     }
@@ -78,7 +82,7 @@ export class UserInputComponent {
 
   calculateRate(){
     const principal = +this.userPrincipal;
-    const period = +this.userRate;
+    const period = +this.userPeriod;
     const accumulatedAmount = +this.userAmount;
     const interestEarned = +this.userInterest;
     if(principal&&period&&accumulatedAmount){
@@ -93,7 +97,7 @@ export class UserInputComponent {
 
   calculateInterest(){
     const principal = +this.userPrincipal;
-    const period = +this.userRate;
+    const period = +this.userPeriod;
     const accumulatedAmount = +this.userAmount;
     const interestRate = +this.userRate;
     if(principal&&interestRate&&period){

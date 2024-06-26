@@ -1,31 +1,85 @@
-<form (ngSubmit)="onSubmit()">
-    <h3><u>Simple Interest:</u></h3>
-    <p>
-        <label for="principal">Principal Amount (P)</label>
-        <input id="principal" name="principal-amount" type="number" [(ngModel)]="userPrincipal" />
-    </p>
-    <p>
-        <label for="rate">Inrerest Rate (i)</label>
-        <input id="rate" name="interest-rate" type="number" [(ngModel)]="userRate"  />
-    </p>
-    <p>
-        <label for="period">Period(n)</label>
-        <input id="period" name="period" type="number" [(ngModel)]="userPeriod"  />
-    </p>
-    <p>
-        <label for="ammount">Accumlated Ammount (A)</label>
-        <input id="amount" name="amount" type="number" [(ngModel)]="userAmount"  />
-    </p>
-    <p>
-        <label for="interest">Intrest Earned (I)</label>
-        <input id="interest" name="interest" type="number" [(ngModel)]="userInterest"  />
-    </p>
-    <p><b>Buttons:</b></p>
-    <div class="buttons" >
-        <button (click)="calculatePrincipal()">P</button>
-        <button (click)="calculateRate()">i</button>
-        <button (click)="calculatePeriod()">n</button>
-        <button (click)="calculateAmaount()">A</button>
-        <button (click)="calculateInterest()">I</button>
-    </div>
+<form>
+    <label for="interest-type">Select Interest Type:</label>
+    <select id="interest-type" [(ngModel)]="selectedInterestType" name="interest-type">
+        <option value="simple">Simple Interest</option>
+        <option value="compound">Compound Interest</option>
+    </select>
 </form>
+<div *ngIf="selectedInterestType === 'simple'; else compoundForm">
+    <form (ngSubmit)="onSubmitSimpleInterest()">
+        <h3><u>Simple Interest:</u></h3>
+        <p>
+            <label for="principal">Principal Amount (P)</label>
+            <input id="principal" name="principal-amount" type="number" [(ngModel)]="userPrincipal" />
+        </p>
+        <p>
+            <label for="rate">Inrerest Rate (i)</label>
+            <input id="rate" name="interest-rate" type="number" [(ngModel)]="userRate"  />
+        </p>
+        <p>
+            <label for="period">Period(n)</label>
+            <input id="period" name="period" type="number" [(ngModel)]="userPeriod"  />
+        </p>
+        <p>
+            <label for="ammount">Accumlated Ammount (A)</label>
+            <input id="amount" name="amount" type="number" [(ngModel)]="userAmount"  />
+        </p>
+        <p>
+            <label for="interest">Intrest Earned (I)</label>
+            <input id="interest" name="interest" type="number" [(ngModel)]="userInterest"  />
+        </p>
+        <p><b>Buttons:</b></p>
+        <div class="buttons" >
+            <button (click)="calculateAmaount()">A</button>
+            <button (click)="calculatePrincipal()">P</button>
+            <button (click)="calculateInterest()">I</button>
+            <button (click)="calculateRate()">i</button>
+            <button (click)="calculatePeriod()">n</button>
+        </div>
+    </form>
+</div>
+
+<ng-template #compoundForm>
+    <form>
+        <h2><u>Compound Interest:</u></h2>
+        <p>
+            <label for="principal">Principal (P)</label>
+            <input for="principal" id="principal" type="number" />
+        </p>
+        <p>
+            <label for="amount">Amount (A)</label>
+            <input for="amount" id="amount" type="number" />
+        </p>
+        <p>
+            <label for="interest">Interest (I)</label>
+            <input for="interest" id="interest" type="number" />
+        </p>
+        <p>
+            <label for="period">Period (n)</label>
+            <input for="period" id="period" type="number" />
+        </p>
+        <p>
+            <label for="rate">Rate (r)</label>
+            <input for="rate" id="rate" type="number" />
+        </p>
+        <p>
+            <label for="compound-period">Compound Period (m)</label>
+            <input for="compound-period" id="compound-period" type="number" />
+        </p>
+        <p>
+            <label for="effective-rate">Effective Rate (i<sub>m</sub>)</label>
+            <input for="effective-rate" id="effective-rate" type="number" />
+        </p>
+        <p><b>Buttons:</b></p>
+        <div class="buttons">
+            <button type="submit">A</button>
+            <button type="submit">P</button>
+            <button type="submit">I</button>
+            <button type="submit">i</button>
+            <button type="submit">i<sub>m</sub></button>
+            <button type="submit">n</button>
+            <button type="submit">m</button>
+        </div>
+    </form>
+</ng-template>
+
