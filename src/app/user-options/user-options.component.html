@@ -1,0 +1,10 @@
+<form>
+    <div class="form-group">
+        <label class="option-label" for="interest-type">Select Interest Type:</label>
+        <select id="interest-type" [(ngModel)]="selectedInterestType" (change)="onInterestTypeChange()" name="interest-type">
+            <option value="select-option">Select Interest Type</option>
+            <option value="simple">Simple Interest</option>
+            <option value="compound">Compound Interest</option>
+        </select>
+    </div>
+</form>

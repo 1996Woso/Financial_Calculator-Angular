@@ -1,17 +1,22 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FinancialService } from '../../financial.service';
-
+import { UserOptionsComponent } from '../user-options/user-options.component';
+import { SimpleChanges } from '@angular/core';
 @Component({
   selector: 'app-user-input',
   standalone: true,
-  imports: [FormsModule,NgIf],
+  imports: [FormsModule,NgIf,UserOptionsComponent],
   templateUrl: './user-input.component.html',
   styleUrl: './user-input.component.css'
 })
 export class UserInputComponent {
-  selectedInterestType ='simple';
+  @Input() interestType?: string;
+  selectedInterestType ='';
+  onInterestTypeChanged(interestType: string){
+    this.selectedInterestType = interestType;
+  }
 
   //Simple Interest variables
   userPrincipal = '';

@@ -1,4 +1,4 @@
-export interface FinancialInput{
+export interface SimpleInterestInput{
     principalAmount:number;
     period:number;
     accumulatedAmount:number;
