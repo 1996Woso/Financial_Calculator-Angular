@@ -41,53 +41,52 @@
     </div>
     
     <ng-template #compoundForm>
-        <form>
+        <form (ngSubmit)="onSubmitCompoundInterest()">
             <h2><u>Compound Interest:</u></h2>
             <div class="input-group">
                 <p>
                     <label for="amount">Amount (A)</label>
-                    <input for="amount" id="amount" type="number" />
+                    <input for="amount" id="amount" type="number" name="amount" [(ngModel)]="CI_userAmount" />
                 </p>
                 <p>
                     <label for="principal">Principal (P)</label>
-                    <input for="principal" id="principal" type="number" />
+                    <input for="principal" id="principal" type="number" name="principal" [(ngModel)]="CI_userPrincipal"/>
                 </p>
             </div>
             <div class="input-group">
                 <p>
                     <label for="interest">Interest (I)</label>
-                    <input for="interest" id="interest" type="number" />
+                    <input for="interest" id="interest" type="number" name="interest" [(ngModel)]="CI_userInterest"/>
                 </p>
                 <p>
                     <label for="period">Period (n)</label>
-                    <input for="period" id="period" type="number" />
+                    <input for="period" id="period" type="number" name="period" [(ngModel)]="CI_userPeriod"/>
                 </p>
             </div>
             <div class="input-group">
                 <p>
                     <label for="rate">Rate (r)</label>
-                    <input for="rate" id="rate" type="number" />
+                    <input for="rate" id="rate" type="number" name="rate" [(ngModel)]="CI_userRate"/>
                 </p>
                 <p>
                     <label for="compound-period">Compound Period (m)</label>
-                    <input for="compound-period" id="compound-period" type="number" />
+                    <input for="compound-period" id="compound-period" type="number" name="compound-period" [(ngModel)]="CI_userCompoundPeriod"/>
                 </p>
             </div>
             <div>
                 <p>
                     <label class="label-half" for="effective-rate">Effective Rate (i<sub>m</sub>)</label>
-                    <input class="input-half" for="effective-rate" id="effective-rate" type="number" />
+                    <input class="input-half" for="effective-rate" id="effective-rate" type="number" name="effective-rate" [(ngModel)]="CI_userEffecitveRate" />
                 </p>
             </div>
             <p><b>Buttons:</b></p>
             <div class="buttons">
-                <button type="submit">A</button>
-                <button type="submit">P</button>
-                <button type="submit">I</button>
-                <button type="submit">i</button>
-                <button type="submit">i<sub>m</sub></button>
-                <button type="submit">n</button>
-                <button type="submit">m</button>
+                <button (click)="calculate_CI_Amount()">A</button>
+                <button (click)="calculate_CI_Principal()" >P</button>
+                <button (click)="calculate_CI_Interest()">I</button>
+                <button (click)="calculate_CI_Rate()">i</button>
+                <button (click)="calculateEffectiveRate()">i<sub>m</sub></button>
+                <button (click)="calculate_CI_Period()">n</button>
             </div>
         </form>
     </ng-template>
