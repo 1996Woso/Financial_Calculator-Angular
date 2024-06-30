@@ -3,7 +3,6 @@ import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FinancialService } from '../../financial.service';
 import { UserOptionsComponent } from '../user-options/user-options.component';
-import { SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-user-input',
@@ -13,8 +12,9 @@ import { SimpleChanges } from '@angular/core';
   styleUrl: './user-input.component.css'
 })
 export class UserInputComponent {
-  @Input() interestType?: string;
-  selectedInterestType ='';
+  @Input() interestType?: string;  // Input property to receive the selected interest type
+  selectedInterestType = '';  // Local property to store the selected interest type
+
   onInterestTypeChanged(interestType: string){
     this.selectedInterestType = interestType;
   }

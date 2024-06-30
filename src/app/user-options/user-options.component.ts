@@ -1,4 +1,4 @@
-import { Component, Output,EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,10 +9,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './user-options.component.css'
 })
 export class UserOptionsComponent {
-  selectedInterestType = 'select-option';
-  @Output() interestTypeChanged = new EventEmitter<string>();
+  selectedInterestType = 'select-option';  // Default value
+  @Output() interestTypeChanged = new EventEmitter<string>();  // EventEmitter to notify parent component about the selection change
 
-  onInterestTypeChange(){
-    this.interestTypeChanged.emit(this.selectedInterestType);
+  onInterestTypeChange() {
+    this.interestTypeChanged.emit(this.selectedInterestType);  // Emit the selected interest type when it changes
   }
 }
